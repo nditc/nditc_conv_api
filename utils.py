@@ -1,5 +1,11 @@
+from io import BytesIO
 from openpyxl import Workbook, load_workbook
+import base64
+import os
 
+def random_filename(byte_length=8):
+    random_bytes = os.urandom(byte_length)
+    return base64.urlsafe_b64encode(random_bytes).decode('utf-8').rstrip('=')
 
 json_test_data = [
     {
@@ -24,7 +30,7 @@ def json_to_xlsx(json_data):
     all_keys = set()
     for item in json_data:
         all_keys.update(item.keys())
-    headers = all_keys
+    headers = list(all_keys)
 
     wb = Workbook()
     ws = wb.active
@@ -34,7 +40,12 @@ def json_to_xlsx(json_data):
     for item in json_data:
         row = [item.get(key, "") for key in headers]
         ws.append(row)
-    wb.save("output.xlsx")
+
+    stream = BytesIO()
+    wb.save(stream)
+    stream.seek(0) 
+
+    return stream
 
 def xlsx_to_json(xlsx_filepath):
     wb = load_workbook(xlsx_filepath)
@@ -48,7 +59,9 @@ def xlsx_to_json(xlsx_filepath):
         data.append(item)
     return data
 
+
+
 if __name__ == "__main__":
-    # json_to_xlsx(json_test_data)
-    data = xlsx_to_json("output.xlsx")
-    print(data)
+    json_to_xlsx(json_test_data)
+    # data = xlsx_to_json("output.xlsx")
+    # print(data)

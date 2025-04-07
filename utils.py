@@ -2,7 +2,6 @@ from io import BytesIO
 import threading
 import time
 from openpyxl import Workbook, load_workbook
-import base64
 import os, uuid
 from weasyprint import HTML
 
@@ -11,9 +10,6 @@ token_map = {}
 TEMP_DIR = "./files"
 os.makedirs(TEMP_DIR, exist_ok=True)
 
-def random_filename(byte_length=8):
-    random_bytes = os.urandom(byte_length)
-    return base64.urlsafe_b64encode(random_bytes).decode('utf-8').rstrip('=')
 
 json_test_data = [
     {

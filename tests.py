@@ -1,5 +1,7 @@
 import requests
 
+API_KEY = ""
+
 data = [
     {
         "name":"Fren",
@@ -20,7 +22,7 @@ data = [
 ]
 
 def test_json_to_xlsx():
-    url = "http://127.0.0.1:8000/json-to-xlsx/"
+    url = f"http://127.0.0.1:8000/json-to-xlsx?api_key={API_KEY}"
 
     response = requests.post(url, json=data)
 
@@ -29,13 +31,14 @@ def test_json_to_xlsx():
 
 
 def test_xlsx_to_json():
+    url = f"http://localhost:8000/xlsx-to-json/2?api_key={API_KEY}"
     files = {'file': open('example.xlsx', 'rb')}
-    response = requests.post("http://localhost:8000/xlsx-to-json", files=files)
+    response = requests.post(url, files=files)
 
     print(response.json())
 
 def test_html_to_pdf():
-    url = "http://127.0.0.1:8000/html-to-pdf/2"
+    url = f"http://127.0.0.1:8000/html-to-pdf/2?api_key={API_KEY}"
 
     files = {'file': open('example.html', 'r')}
     response = requests.post(url, files=files)
@@ -45,6 +48,6 @@ def test_html_to_pdf():
 
 
 if __name__ == "__main__":
-    # test_xlsx_to_json()
+    test_xlsx_to_json()
     # test_json_to_xlsx()
-    test_html_to_pdf()
+    # test_html_to_pdf()

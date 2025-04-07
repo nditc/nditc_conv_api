@@ -9,6 +9,11 @@ Made in python
 - Converts HTML to PDF
 
 
-## DEV LOG
-- 
+## Task List
+- [x] JSON to XLSX
+- [X] XLSX to JSON
+- [X] Test for JSON <-> XLSX
+- [ ] HTML to PDF
+- [ ] Test for HTML -> PDF
+- [ ] API key auth
 

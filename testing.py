@@ -36,4 +36,5 @@ def test_xlsx_to_json():
 
 
 if __name__ == "__main__":
-    test_xlsx_to_json()
+    # test_xlsx_to_json()
+    test_json_to_xlsx()

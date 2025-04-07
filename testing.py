@@ -28,3 +28,12 @@ def test_json_to_xlsx():
     print("Response:", response.text)
 
 
+def test_xlsx_to_json():
+    files = {'file': open('output.xlsx', 'rb')}
+    response = requests.post("http://localhost:8000/xlsx-to-json", files=files)
+
+    print(response.json())
+
+
+if __name__ == "__main__":
+    test_xlsx_to_json()

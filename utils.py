@@ -47,8 +47,8 @@ def json_to_xlsx(json_data):
 
     return stream
 
-def xlsx_to_json(xlsx_filepath):
-    wb = load_workbook(xlsx_filepath)
+def xlsx_to_json(xlsx_datastream):
+    wb = load_workbook(BytesIO(xlsx_datastream))
     ws = wb.active
 
     headers = [cell.value for cell in next(ws.iter_rows(min_row=1, max_row=1))]

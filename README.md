@@ -13,7 +13,8 @@ Made in python
 - [x] JSON to XLSX
 - [X] XLSX to JSON
 - [X] Test for JSON <-> XLSX
-- [ ] HTML to PDF
-- [ ] Test for HTML -> PDF
+- [x] HTML to PDF
+- [x] Test for HTML -> PDF
 - [ ] API key auth
+- [ ] Add logger
 

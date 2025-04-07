@@ -4,6 +4,7 @@ import time
 from openpyxl import Workbook, load_workbook
 import base64
 import os, uuid
+from weasyprint import HTML
 
 
 token_map = {}
@@ -64,7 +65,7 @@ def json_to_xlsx(json_data, method_id):
         wb.save(stream)
         stream.seek(0)
         return stream
-    elif method_id == 2:
+    else:
         token_map[token] = filepath
         schedule_cleanup(token)
         wb.save(filepath)
@@ -83,7 +84,21 @@ def xlsx_to_json(xlsx_datastream):
         data.append(item)
     return data
 
+def html_to_pdf(html_data, method_id):
+    token = str(uuid.uuid4())
+    pdfpath = os.path.join(TEMP_DIR, f"{token}.pdf")
+    print(pdfpath)
+    pdf = HTML(string=html_data.decode('utf-8')).write_pdf()
 
+    if method_id == 1:
+        pdf_stream = BytesIO(pdf)
+        return pdf_stream
+    else:
+        with open(pdfpath, "wb") as f:
+            f.write(pdf)
+        token_map[token] = pdfpath
+        schedule_cleanup(token)
+        return token
 
 if __name__ == "__main__":
     json_to_xlsx(json_test_data)

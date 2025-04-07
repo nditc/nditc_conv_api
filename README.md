@@ -9,7 +9,7 @@ venv/Scripts/activate
 pip install "fastapi[standard]"
 pip install -r requirements
 ```
-For weasyprint check docs [here](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation)
+For weasyprint setup check docs [here](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation)
 
 ## Post installation
 - Create keys.py file and put api keys in a set named API_KEYS

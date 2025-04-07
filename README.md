@@ -6,8 +6,7 @@ Made in python using FastApi, Openpyxl, Weasyprint
 ```
 virtualenv venv
 venv/Scripts/activate
-pip install "fastapi[standard]"
-pip install -r requirements
+pip install -r requirements.txt
 ```
 For weasyprint setup check docs [here](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation)
 

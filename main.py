@@ -5,8 +5,6 @@ import utils
 from keys import API_KEYS
 
 
-MAX_FILE_SIZE = 10 * 1024 * 1024 # 10M
-
 def verify_api_key(api_key: str = Query(...)):
     if api_key not in API_KEYS:
         raise HTTPException(status_code=403, detail="Invalid or missing API key")
@@ -56,11 +54,6 @@ async def download_file(token: str):
 
 @app.post("/xlsx-to-json")
 async def xlsx_to_json(file: UploadFile = File(...)):
-    if file.spool_max_size and file.spool_max_size > MAX_FILE_SIZE:
-        raise HTTPException(
-            status_code=400,
-            detail=f"File size exceeds the {MAX_FILE_SIZE / (1024 * 1024)} MB limit"
-        )
     contents = await file.read()
     json_data = utils.xlsx_to_json(contents)
 
@@ -68,11 +61,6 @@ async def xlsx_to_json(file: UploadFile = File(...)):
 
 @app.post("/html-to-pdf/{method_id}")
 async def html_to_pdf(method_id: int,request: Request, file: UploadFile = File(...)):
-    if file.spool_max_size and file.spool_max_size > MAX_FILE_SIZE:
-        raise HTTPException(
-            status_code=400,
-            detail=f"File size exceeds the {MAX_FILE_SIZE / (1024 * 1024)} MB limit"
-        )
     html_content = await file.read()
     pdf_data = utils.html_to_pdf(html_content, method_id)
 

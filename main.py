@@ -4,10 +4,13 @@ from fastapi.responses import FileResponse, StreamingResponse
 import utils
 from keys import API_KEYS
 
+KEY = ''
 
 def verify_api_key(api_key: str = Query(...)):
     if api_key not in API_KEYS:
         raise HTTPException(status_code=403, detail="Invalid or missing API key")
+    else:
+        KEY = api_key
 
 app = FastAPI(dependencies=[Depends(verify_api_key)])
 
@@ -36,7 +39,7 @@ async def json_to_xlsx(request: Request, method_id: int):
             headers={"Content-Disposition": "attachment; filename=result.xlsx"}
         )
     elif method_id == 2:
-        download_url = f"{request.base_url}download/{data}"
+        download_url = f"{request.base_url}download/{data}?api_key={KEY}"
         return {"url": download_url}
 
 @app.get("/download/{token}")
@@ -74,6 +77,6 @@ async def html_to_pdf(method_id: int,request: Request, file: UploadFile = File(.
             headers={"Content-Disposition": "attachment; filename=result.pdf"}
         )
     elif method_id == 2:
-        download_url = f"{request.base_url}download/{pdf_data}"
+        download_url = f"{request.base_url}download/{pdf_data}?api_key={KEY}"
         return {"url": download_url}
         

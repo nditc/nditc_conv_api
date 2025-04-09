@@ -45,7 +45,7 @@ async def json_to_xlsx(request: Request, method_id: int):
 @app.get("/download/{token}")
 async def download_file(token: str):
     path = utils.token_map.get(token)
-    fname = path.split("\\")[-1]
+    fname = os.path.basename(path)
     if not path or not os.path.exists(path):
         raise HTTPException(status_code=404, detail="File not found or expired")
 

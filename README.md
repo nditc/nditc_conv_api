@@ -12,7 +12,11 @@ For weasyprint setup check docs [here](https://doc.courtbouillon.org/weasyprint/
 
 ## Post installation
 - Create keys.py file and put api keys in a set named API_KEYS
-- Generate api keys using key_gen.py and put it in API_KEYS
+- Generate api keys using key_gen.py and put it in API_KEYS, like...
+
+```
+API_KEYS = {"something...."}
+```
 
 Run the api
 - Dev

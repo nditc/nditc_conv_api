@@ -80,4 +80,3 @@ async def html_to_pdf(method_id: int,request: Request, file: UploadFile = File(.
     elif method_id == 2:
         download_url = f"{request.base_url}download/{pdf_data}?api_key={KEY}"
         return {"url": download_url}
-        

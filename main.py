@@ -2,15 +2,16 @@ import os
 from fastapi import FastAPI, HTTPException, Request, File, UploadFile, Depends, Query
 from fastapi.responses import FileResponse, StreamingResponse
 import utils
-from keys import API_KEYS
+from dotenv import load_dotenv
 
-KEY = ''
+load_dotenv()
+
+KEY = os.getenv("API_KEY")
 
 def verify_api_key(api_key: str = Query(...)):
-    if api_key not in API_KEYS:
+    if api_key != KEY:
         raise HTTPException(status_code=403, detail="Invalid or missing API key")
-    else:
-        KEY = api_key
+
 
 app = FastAPI(dependencies=[Depends(verify_api_key)])
 

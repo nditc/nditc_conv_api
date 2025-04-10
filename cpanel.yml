@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/nditcnet/utilapi.nditc.net/prod/
+    - /bin/cp -r * $DEPLOYPATH

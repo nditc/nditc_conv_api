@@ -1,4 +1,5 @@
 from io import BytesIO
+import json
 import threading
 import time
 from openpyxl import Workbook, load_workbook
@@ -10,25 +11,6 @@ token_map = {}
 TEMP_DIR = "./files"
 os.makedirs(TEMP_DIR, exist_ok=True)
 
-
-json_test_data = [
-    {
-        "name":"Fren",
-        "id": 1
-    },
-    {
-        "name":"Eren",
-        "id": 2
-    },
-    {
-        "name":"Kira",
-        "id": 3
-    },
-    {
-        "name":"Kira",
-        "id": 3
-    }
-]
 
 def schedule_cleanup(token: str, delay: int = 60):
     def cleanup():
@@ -53,7 +35,12 @@ def json_to_xlsx(json_data, method_id):
     ws.append(headers)
 
     for item in json_data:
-        row = [item.get(key, "") for key in headers]
+        row = []
+        for key in headers:
+            value = item.get(key, "")
+            if isinstance(value, (dict, list)):
+                value = json.dumps(value, ensure_ascii=False)
+            row.append(value)
         ws.append(row)
 
     if method_id == 1:

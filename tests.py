@@ -1,6 +1,5 @@
 import requests
 
-# API_KEY = "WlywoEFCc28"
 API_KEY = 'abcd'
 base_url = "http://127.0.0.1:5000"
 # base_url = "http://utilapi.nditc.net:8001"
@@ -23,6 +22,8 @@ data = [
         "id": 3
     }
 ]
+
+
 
 def test_json_to_xlsx():
     url = f"{base_url}/json-to-xlsx/2?api_key={API_KEY}"
@@ -52,5 +53,5 @@ def test_html_to_pdf():
 
 if __name__ == "__main__":
     # test_xlsx_to_json()
-    # test_json_to_xlsx()
-    test_html_to_pdf()
+    test_json_to_xlsx()
+    # test_html_to_pdf()

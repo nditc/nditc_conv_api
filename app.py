@@ -4,12 +4,15 @@ from functools import wraps
 from werkzeug.utils import secure_filename
 import utils
 from dotenv import load_dotenv
+from flask_cors import CORS
+
 
 load_dotenv()
 
 KEY = os.getenv("API_KEY")
 
 app = Flask(__name__)
+CORS(app)
 
 def verify_api_key(f):
     @wraps(f)

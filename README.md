@@ -2,6 +2,8 @@
 
 Made in python using FastApi, Openpyxl, Weasyprint
 
+**Use app.py for Flask**
+
 ## Installation
 ```
 virtualenv venv

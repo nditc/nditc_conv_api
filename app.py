@@ -79,12 +79,10 @@ def xlsx_to_json():
 @app.route("/html-to-pdf/<int:method_id>", methods=["POST"])
 @verify_api_key
 def html_to_pdf(method_id):
-    if 'file' not in request.files:
-        return jsonify({"error": "No file part"}), 400
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({"error": "No selected file"}), 400
-    html_content = file.read()
+    html_content = request.data.decode('utf-8').strip()
+    if not html_content:
+        return jsonify({"error": "Empty HTML content"}), 400
+
     pdf_data = utils.html_to_pdf(html_content, method_id)
 
     if method_id not in [1, 2]:
@@ -102,4 +100,4 @@ def html_to_pdf(method_id):
         return jsonify({"url": download_url})
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

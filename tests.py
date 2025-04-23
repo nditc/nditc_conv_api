@@ -1,7 +1,9 @@
 import requests
 
-# base_url = "http://127.0.0.1:5000"
-base_url = "https://rown.pythonanywhere.com"
+
+API_KEY = "abcd"
+base_url = "http://127.0.0.1:5000"
+# base_url = "https://rown.pythonanywhere.com"
 
 data = [
     {
@@ -43,8 +45,11 @@ def test_xlsx_to_json():
 def test_html_to_pdf():
     url = f"{base_url}/html-to-pdf/2?api_key={API_KEY}"
 
-    files = {'file': open('example.html', 'r')}
-    response = requests.post(url, files=files)
+    with open('example.html', 'r', encoding='utf-8') as f:
+        html_content = f.read()
+
+    headers = {'Content-Type': 'text/html'}
+    response = requests.post(url, data=html_content, headers=headers)
     
     print("Status code:", response.status_code)
     print("Response:", response.text)
@@ -52,5 +57,5 @@ def test_html_to_pdf():
 
 if __name__ == "__main__":
     # test_xlsx_to_json()
-    test_json_to_xlsx()
-    # test_html_to_pdf()
+    # test_json_to_xlsx()
+    test_html_to_pdf()

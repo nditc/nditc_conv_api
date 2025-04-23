@@ -67,11 +67,11 @@ def xlsx_to_json(xlsx_datastream):
         data.append(item)
     return data
 
-def html_to_pdf(html_data, method_id):
+def html_to_pdf(html_str, method_id):
     token = str(uuid.uuid4())
     pdfpath = os.path.join(TEMP_DIR, f"{token}.pdf")
     print(pdfpath)
-    pdf = HTML(string=html_data.decode('utf-8')).write_pdf()
+    pdf = HTML(string=html_str).write_pdf()
 
     if method_id == 1:
         pdf_stream = BytesIO(pdf)

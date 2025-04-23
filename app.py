@@ -12,7 +12,7 @@ load_dotenv()
 KEY = os.getenv("API_KEY")
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"*": {"origins": "*"}})
 
 def verify_api_key(f):
     @wraps(f)

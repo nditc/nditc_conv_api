@@ -22,63 +22,6 @@ data = [
     }
 ]
 
-data = [{
-        "id": 1092,
-        "userName": "raf_l_coder@1741970342077",
-        "mode": "par",
-        "iat": 1744381273,
-        "exp": 1746973273,
-        "fullName": "Raf_L_coder",
-        "image": "https://res.cloudinary.com/dxvw2ccph/image/upload/v1742909061/init/uploads/participants/raf_l_coder%25401742909053633.jpg",
-        "email": "rafsanamin2020@gmail.com",
-        "phone": "01713753930",
-        "institute": "Notre Dame College",
-        "className": "12",
-        "address": "Uttara, Dhaka",
-        "fb": "https://www.facebook.com/profile.php?id=100082305411559",
-        "qrCode": "raf_l_coderm890608j",
-        "isAppliedCA": True,
-        "isCA": True,
-        "caData": {
-            "points": 0,
-            "code": "m8oibxe0"
-        },
-        "clientEvents": [
-            "snack",
-            "lunch",
-            "soloPass",
-            "webPageDesigningDevelopment",
-            "spotNGo"
-        ]
-    }, {
-        "id": 1092,
-        "userName": "raf_l_coder@1741970342077",
-        "mode": "par",
-        "iat": 1744381273,
-        "exp": 1746973273,
-        "fullName": "Raf_L_coder",
-        "image": "https://res.cloudinary.com/dxvw2ccph/image/upload/v1742909061/init/uploads/participants/raf_l_coder%25401742909053633.jpg",
-        "email": "rafsanamin2020@gmail.com",
-        "phone": "01713753930",
-        "institute": "Notre Dame College",
-        "className": "12",
-        "address": "Uttara, Dhaka",
-        "fb": "https://www.facebook.com/profile.php?id=100082305411559",
-        "qrCode": "raf_l_coderm890608j",
-        "isAppliedCA": True,
-        "isCA": True,
-        "caData": {
-            "points": 0,
-            "code": "m8oibxe0"
-        },
-        "clientEvents": [
-            "snack",
-            "lunch",
-            "soloPass",
-            "webPageDesigningDevelopment",
-            "spotNGo"
-        ]
-    }]
 
 
 def test_json_to_xlsx():
